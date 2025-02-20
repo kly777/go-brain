@@ -1,0 +1,195 @@
+GET http://localhost:8080/ping
+
+###
+
+GET http://localhost:8080/time
+
+
+
+###
+
+
+GET  http://localhost:8080/things/1
+
+
+
+###
+
+POST http://localhost:8080/things
+Content-Type: application/json
+
+{
+    "Name": "thing1"
+}
+
+###
+
+# Ping Test
+GET http://localhost:8080/ping
+
+###
+
+# Create User
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+    "Name": "JohnDoe",
+    "Email": "john.doe@example.com",
+    "Role": "admin"
+}
+
+###
+
+# Get User by ID
+GET http://localhost:8080/users/2
+
+###
+
+# Update User
+PUT http://localhost:8080/users/1
+Content-Type: application/json
+
+{
+    "ID": 1,
+    "Name": "JohnDoeUpdated",
+    "Email": "john.doe.updated@example.com",
+    "Role": "admin"
+}
+
+###
+
+# Delete User
+DELETE http://localhost:8080/users/1
+
+###
+
+# Create Thing
+POST http://localhost:8080/things
+Content-Type: application/json
+
+{
+    "Name": "thing1",
+}
+
+###
+
+# Get Thing by ID
+GET http://localhost:8080/things/1
+
+###
+
+# Update Thing
+PUT http://localhost:8080/things/1
+Content-Type: application/json
+
+{
+    "ID": 1,
+    "Name": "thing1Updated",
+    "Value": "value1Updated"
+}
+
+###
+
+# Delete Thing
+DELETE http://localhost:8080/things/1
+
+###
+
+# Invalid User ID (GET)
+GET http://localhost:8080/users/9999
+
+###
+
+# Invalid User ID (PUT)
+PUT http://localhost:8080/users/9999
+Content-Type: application/json
+
+{
+    "ID": 9999,
+    "Name": "InvalidUser",
+    "Email": "invalid.user@example.com",
+    "Role": "user"
+}
+
+###
+
+# Invalid User ID (DELETE)
+DELETE http://localhost:8080/users/9999
+
+###
+
+# Invalid Thing ID (GET)
+GET http://localhost:8080/things/9999
+
+###
+
+# Invalid Thing ID (PUT)
+PUT http://localhost:8080/things/9999
+Content-Type: application/json
+
+{
+    "ID": 9999,
+    "Name": "InvalidThing",
+    "Value": "invalidValue"
+}
+
+###
+
+# Invalid Thing ID (DELETE)
+DELETE http://localhost:8080/things/9999
+
+###
+
+# Invalid JSON (POST User)
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+    "Name": "InvalidUser",
+    "Email": "invalid.user@example.com"
+}
+
+###
+
+# Invalid JSON (PUT User)
+PUT http://localhost:8080/users/1
+Content-Type: application/json
+
+{
+    "ID": 1,
+    "Name": "InvalidUser"
+}
+
+###
+
+# Invalid JSON (POST Thing)
+POST http://localhost:8080/things
+Content-Type: application/json
+
+{
+    "Name": "InvalidThing"
+}
+
+###
+
+# Invalid JSON (PUT Thing)
+PUT http://localhost:8080/things/1
+Content-Type: application/json
+
+{
+    "ID": 1,
+    "Name": "InvalidThing"
+}
+
+###
+
+# Login Test (Valid Credentials)
+POST http://localhost:8080/login
+Authorization: Basic Sm9obkRvZTpwYXNzd29yZA==
+
+###
+
+# Login Test (Invalid Credentials)
+POST http://localhost:8080/login
+Authorization: Basic Sm9obkRvZTpwYXNzd29yZDI=

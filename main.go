@@ -1,54 +1,24 @@
+// main.go
 package main
 
 import (
-
-	"go-brain/database"
-	"go-brain/internal"
-
-	"github.com/gin-gonic/gin"
+	"fmt"
+	"go-brain/initializer"
+	"log"
+	"time"
 )
 
 func main() {
-	gin.SetMode(gin.TestMode)
-	db, err := database.InitDB()
+	router, cleanup, err := initializer.Init()
 	if err != nil {
-		panic(err)
+		log.Fatalf("Failed to initialize app: %v", err)
 	}
+	defer cleanup()
 
-	defer db.Close()
+	fmt.Println(time.Now().Format("2006/01/02 15:04:05"), "Server is running on port 8080")
+	fmt.Println("\n\n\nGREAT!!!!!")
 
-	// 初始化 Repositories
-	userRepo := internal.NewUserRepo(db)
-	thingRepo := internal.NewThingRepo(db)
-
-	// 初始化 Services
-	userService := internal.NewUserService(userRepo)
-	thingService := internal.NewThingService(thingRepo)
-
-	// 初始化 Handlers
-	userHandler := internal.NewUserHandler(userService)
-	thingHandler := internal.NewThingHandler(thingService)
-
-	router := gin.Default()
-
-	router.GET("/ping",func(c *gin.Context) {
-			c.JSON(200, gin.H{
-				"message": "pong",
-				"query":  c.Request.URL.Query(),
-			})
-		})
-
-	// User Routes
-	router.POST("/users", userHandler.Create)
-	router.GET("/users/:id", userHandler.GetByID)
-	router.PUT("/users/:id", userHandler.Update)
-	router.DELETE("/users/:id", userHandler.Delete)
-
-	// Thing Routes
-	router.POST("/things", thingHandler.Create)
-	router.GET("/things/:id", thingHandler.GetByID)
-	router.PUT("/things/:id", thingHandler.Update)
-	router.DELETE("/things/:id", thingHandler.Delete)
-
-	router.Run(":8080")
+	if err := router.Run(":8080"); err != nil {
+		log.Fatalf("Failed to start server: %v", err)
+	}
 }

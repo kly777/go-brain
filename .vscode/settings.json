@@ -5,6 +5,7 @@
         "sqldb",
         "sqlitedialect",
         "sqliteshim",
-        "uptrace"
+        "uptrace",
+        "xlog"
     ]
 }

@@ -4,9 +4,8 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
+	"go-brain/internal/model"
 	"log"
-
-	"go-brain/internal"
 
 	"github.com/uptrace/bun"
 	"github.com/uptrace/bun/dialect/sqlitedialect"
@@ -15,7 +14,7 @@ import (
 
 // InitDB initializes the database connection and creates tables if they don't exist
 func InitDB() (*bun.DB, error) {
-	sqldb, err := sql.Open(sqliteshim.ShimName,"file:brain.sqlite?_fk=1")
+	sqldb, err := sql.Open(sqliteshim.ShimName, "file:brain.sqlite?_fk=1")
 	if err != nil {
 		return nil, fmt.Errorf("failed to connect to SQLite database: %w", err)
 	}
@@ -29,14 +28,13 @@ func InitDB() (*bun.DB, error) {
 	return db, nil
 }
 
-// autoMigrate creates tables if they don't exist
 func autoMigrate(db *bun.DB) error {
 	ctx := context.Background()
 
 	// Create tables if they don't exist
 	models := []interface{}{
-		(*internal.User)(nil),
-		(*internal.Thing)(nil),
+		(*model.User)(nil),
+		(*model.Thing)(nil),
 	}
 
 	for _, model := range models {
