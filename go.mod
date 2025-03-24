@@ -4,10 +4,8 @@ go 1.23.4
 
 require (
 	github.com/gin-gonic/gin v1.10.0
+	github.com/mattn/go-sqlite3 v1.14.24
 	github.com/stretchr/testify v1.10.0
-	github.com/uptrace/bun v1.2.10
-	github.com/uptrace/bun/dialect/sqlitedialect v1.2.10
-	github.com/uptrace/bun/driver/sqliteshim v1.2.10
 )
 
 require (

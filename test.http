@@ -9,7 +9,7 @@ GET http://localhost:8080/time
 ###
 
 
-GET  http://localhost:8080/things/1
+GET  http://localhost:8080/things/10
 
 
 
@@ -34,15 +34,13 @@ POST http://localhost:8080/users
 Content-Type: application/json
 
 {
-    "Name": "JohnDoe",
-    "Email": "john.doe@example.com",
-    "Role": "admin"
+    "Name": "JohnDoe"
 }
 
 ###
 
 # Get User by ID
-GET http://localhost:8080/users/2
+GET http://localhost:8080/users/5
 
 ###
 

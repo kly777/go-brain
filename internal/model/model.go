@@ -1,18 +1,17 @@
 package model
 
-import "github.com/uptrace/bun"
+import "database/sql"
 
-// User is a struct that represents a user in the database
+// User 代表数据库中的用户
 type User struct {
-	bun.BaseModel `bun:"table:users,alias:u"`
-	ID	 int64  `bun:",pk,autoincrement"`
-	Name string
-	Password string
+	ID       int64  `json:"id"`
+	Name     string `json:"name"`
+	Password sql.NullString `json:"-"`
 }
 
+// Thing 代表数据库中的物品
 type Thing struct {
-	bun.BaseModel `bun:"table:things,alias:t"`
-	ID	 int64  `bun:",pk,autoincrement"`
-	Name string
+	ID   int64  `json:"id"`
+	Name string `json:"name"`
 }
 
